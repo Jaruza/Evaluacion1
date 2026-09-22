@@ -34,10 +34,9 @@ const ParticleBackground = () => {
           },
         },
         repulse: {
-          distance: 80,
-          duration: 5,
-          speed: 0.05,
-          factor: 0.5,
+          distance: 120,
+          duration: 1.5,
+          speed: 0.3,
         },
       },
     },
