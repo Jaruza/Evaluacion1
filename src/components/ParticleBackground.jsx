@@ -22,15 +22,22 @@ const ParticleBackground = () => {
       events: {
         onHover: {
           enable: true,
-          mode: "repulse",
+          mode: ["grab", "repulse"],
         },
         resize: true,
       },
       modes: {
+        grab: {
+          distance: 180,
+          links: {
+            opacity: 0.15,
+          },
+        },
         repulse: {
-          distance: 120,
-          duration: 3,
-          speed: 0.1,
+          distance: 80,
+          duration: 5,
+          speed: 0.05,
+          factor: 0.5,
         },
       },
     },
