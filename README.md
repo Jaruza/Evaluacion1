@@ -8,11 +8,8 @@
 ---
 
 ## Descripción del Proyecto
-Plataforma web para la gestión y apoyo en asignaturas de la carrera de Ingeniería Civil Informática en la Universidad Autónoma de Temuco.
+Entrega de evaluación nº1 basada desarrollar una aplicación web. En este caso se decidió desarrollar una aplicación web enfocada en la gestión y apoyo en asignaturas de la carrera de Ingeniería Civil Informática de la Universidad Autónoma de Temuco.
 
-Esta primera entrega corresponde a la vista principal (Hero y navegación), desarrollada con React, Vite y Tailwind CSS, incorporando un fondo interactivo de partículas espaciales.
-
----
 
 ## Tecnologías Utilizadas
 - React
@@ -30,27 +27,4 @@ Esta primera entrega corresponde a la vista principal (Hero y navegación), desa
 - `StatBadge.jsx`: Píldoras para mostrar métricas y datos relevantes mediante props.
 - `ParticleBackground.jsx`: Fondo interactivo de partículas.
 
----
 
-## Instrucciones de Instalación y Uso
-
-1. Clonar el repositorio:
-```bash
-git clone https://github.com/Jaruza/Evaluacion1.git
-cd Evaluacion1
-```
-
-2. Instalar dependencias:
-```bash
-npm install
-```
-
-3. Ejecutar en entorno local:
-```bash
-npm run dev
-```
-
-4. Generar versión para producción:
-```bash
-npm run build
-```
