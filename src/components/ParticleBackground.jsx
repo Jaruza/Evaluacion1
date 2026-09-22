@@ -18,28 +18,30 @@ const ParticleBackground = () => {
       },
     },
     fpsLimit: 60,
-    interactivity: {
-      events: {
-        onHover: {
-          enable: true,
-          mode: ["grab", "repulse"],
-        },
-        resize: true,
-      },
-      modes: {
-        grab: {
-          distance: 180,
-          links: {
-            opacity: 0.15,
-          },
-        },
-        repulse: {
-          distance: 120,
-          duration: 1.5,
-          speed: 0.3,
-        },
+    // Reemplaza dentro de interactivity:
+interactivity: {
+  events: {
+    onHover: {
+      enable: true,
+      mode: ["grab", "repulse"], // Mantiene ambos activos a la vez
+    },
+    resize: true,
+  },
+  modes: {
+    grab: {
+      distance: 220, // Qué tan lejos llega la tela de araña del mouse
+      links: {
+        opacity: 0.35, // Opacidad de los hilos que salen de tu cursor
+        color: "#a855f7", // Hilo púrpura hacia el mouse
       },
     },
+    repulse: {
+      distance: 140, // Radio en el que empuja las partículas
+      duration: 3,   // Cuánto tardan en recuperarse (mayor número = más flotación residual)
+      speed: 0.2,    // Suavidad del empuje (menor número = empuje más lento y elegante)
+    },
+  },
+},
     particles: {
       color: {
         value: ["#f472b6", "#60a5fa", "#c084fc", "#4ade80"],
@@ -54,16 +56,17 @@ const ParticleBackground = () => {
       collisions: {
         enable: false,
       },
-      move: {
-        direction: "none",
-        enable: true,
-        outModes: {
-          default: "out",
-        },
-        random: false,
-        speed: 0.2,
-        straight: false,
-      },
+  move: {
+  direction: "none",
+  enable: true,
+  outModes: {
+    default: "out",
+  },
+  random: true,     // Alterna trayectorias para que no viajen en líneas duras
+  speed: 0.4,       // Velocidad crucero base (calma y fluidez)
+  straight: false,
+  decay: 0.005,     // Fricción suave: da esa sensación de inercia y resistencia física
+  },
       number: {
         density: {
           enable: true,
