@@ -7,7 +7,7 @@ const ParticleBackground = () => {
     await loadFull(engine);
   }, []);
 
-  const particlesOptions = {
+const particlesOptions = {
   fullScreen: {
     enable: true,
     zIndex: -10,
@@ -18,47 +18,31 @@ const ParticleBackground = () => {
     },
   },
   fpsLimit: 60,
-interactivity: {
-  events: {
-    onHover: {
-      enable: true,
-      mode: ["grab", "repulse"],
+  interactivity: {
+    events: {
+      onHover: {
+        enable: true,
+        // Eliminamos "grab" por completo. Solo repulse ultra suave.
+        mode: "repulse",
+      },
+      resize: true,
     },
-    resize: true,
-  },
-  modes: {
-    grab: {
-      // Se amplía a 200 para que la tela de araña siga conectada 
-      // al mouse mientras las partículas son empujadas hacia afuera
-      distance: 200, 
-      links: {
-        opacity: 0.2,
-        color: "#a855f7",
+    modes: {
+      repulse: {
+        distance: 80,   // Radio muy corto para que no dispersa medio universo
+        duration: 1.2,  // Recuperación orgánica
+        speed: 0.1,     // Empuje suave como una onda en el agua
       },
     },
-    repulse: {
-      // 1. Distancia de empuje: las aleja bastante del cursor
-      distance: 180, 
-
-      // 2. Movimiento residual: tardan casi 3 segundos en recuperar 
-      // su velocidad normal, flotando suavemente por el impulso
-      duration: 2.8, 
-
-      // 3. Velocidad del desplazamiento hacia el exterior
-      speed: 0.35, 
-    },
   },
-},
   particles: {
     color: {
-      value: ["#a855f7", "#818cf8", "#c084fc"],
+      // Estrellas blancas y azules pálidas con algún destello lavanda sutil
+      value: ["#ffffff", "#e0e7ff", "#c7d2fe", "#a5b4fc"],
     },
     links: {
-      color: "#818cf8",
-      distance: 115,
-      enable: true,
-      opacity: 0.15,
-      width: 1,
+      // APAGADO: Esta es la clave del video 1. Cero cables atravesando la pantalla.
+      enable: false, 
     },
     move: {
       direction: "none",
@@ -66,26 +50,33 @@ interactivity: {
       outModes: {
         default: "out",
       },
-      random: false,
-      speed: 0.7, // Velocidad base solicitada
+      random: true,
+      speed: 0.6, // Deriva tranquila y constante en segundo plano
       straight: false,
-      decay: 0,
     },
     number: {
       density: {
         enable: true,
         area: 800,
       },
-      value: 60,
+      value: 100, // Al ser estrellas diminutas, 100 generan profundidad sin saturar
     },
     opacity: {
-      value: { min: 0.2, max: 0.7 },
+      // Variabilidad de brillo para simular estrellas lejanas y cercanas
+      value: { min: 0.15, max: 0.75 },
+      animation: {
+        enable: true,
+        speed: 0.8,
+        minimumValue: 0.1,
+        sync: false,
+      },
     },
     shape: {
       type: "circle",
     },
     size: {
-      value: { min: 1, max: 2.2 },
+      // Nodos pequeños (estrellas reales, no pelotas flotantes)
+      value: { min: 0.6, max: 2 },
     },
   },
   detectRetina: true,
