@@ -28,9 +28,9 @@ const ParticleBackground = () => {
       },
       modes: {
         repulse: {
-          distance: 100,
-          duration: 2,
-          speed: 0.5,
+          distance: 120,
+          duration: 3,
+          speed: 0.1,
         },
       },
     },
@@ -40,7 +40,7 @@ const ParticleBackground = () => {
       },
       links: {
         color: "#ffffff",
-        distance: 150,
+        distance: 110,
         enable: true,
         opacity: 0.1,
         width: 1,
@@ -55,7 +55,7 @@ const ParticleBackground = () => {
           default: "out",
         },
         random: false,
-        speed: 0.3,
+        speed: 0.2,
         straight: false,
       },
       number: {
@@ -63,7 +63,7 @@ const ParticleBackground = () => {
           enable: true,
           area: 800,
         },
-        value: 40,
+        value: 120,
       },
       opacity: {
         value: { min: 0.2, max: 0.6 },
