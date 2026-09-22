@@ -18,29 +18,37 @@ const ParticleBackground = () => {
     },
   },
   fpsLimit: 60,
-  interactivity: {
-    events: {
-      onHover: {
-        enable: true,
-        mode: ["grab", "repulse"],
-      },
-      resize: true,
+interactivity: {
+  events: {
+    onHover: {
+      enable: true,
+      mode: ["grab", "repulse"],
     },
-    modes: {
-      grab: {
-        distance: 140, // Alcance normal de la tela de araña
-        links: {
-          opacity: 0.25,
-          color: "#a855f7",
-        },
+    resize: true,
+  },
+  modes: {
+    grab: {
+      // Se amplía a 200 para que la tela de araña siga conectada 
+      // al mouse mientras las partículas son empujadas hacia afuera
+      distance: 200, 
+      links: {
+        opacity: 0.2,
+        color: "#a855f7",
       },
-      repulse: {
-        distance: 60,   // Radio minúsculo: solo afecta a lo que tocas directamente
-        duration: 0.4,  // Recuperación rápida para que no salgan disparadas
-        speed: 0.05,    // Empujón mínimo (un toque sutil en vez de explosión)
-      },
+    },
+    repulse: {
+      // 1. Distancia de empuje: las aleja bastante del cursor
+      distance: 180, 
+
+      // 2. Movimiento residual: tardan casi 3 segundos en recuperar 
+      // su velocidad normal, flotando suavemente por el impulso
+      duration: 2.8, 
+
+      // 3. Velocidad del desplazamiento hacia el exterior
+      speed: 0.35, 
     },
   },
+},
   particles: {
     color: {
       value: ["#a855f7", "#818cf8", "#c084fc"],
