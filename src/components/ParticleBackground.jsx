@@ -7,7 +7,7 @@ const ParticleBackground = () => {
     await loadFull(engine);
   }, []);
 
-const particlesOptions = {
+  const particlesOptions = {
   fullScreen: {
     enable: true,
     zIndex: -10,
@@ -22,29 +22,32 @@ const particlesOptions = {
     events: {
       onHover: {
         enable: true,
-        // Solo 'grab': conecta hilos al cursor SIN empujar ni desarmar la constelación
-        mode: "grab", 
+        mode: ["grab", "repulse"],
       },
       resize: true,
     },
     modes: {
       grab: {
-        distance: 140, // Radio moderado de conexión al mouse
+        distance: 140, // Alcance normal de la tela de araña
         links: {
-          opacity: 0.25, // Hilo visible pero no invasivo
+          opacity: 0.25,
           color: "#a855f7",
         },
+      },
+      repulse: {
+        distance: 60,   // Radio minúsculo: solo afecta a lo que tocas directamente
+        duration: 0.4,  // Recuperación rápida para que no salgan disparadas
+        speed: 0.05,    // Empujón mínimo (un toque sutil en vez de explosión)
       },
     },
   },
   particles: {
     color: {
-      // Púrpura, violeta y azul suave
       value: ["#a855f7", "#818cf8", "#c084fc"],
     },
     links: {
       color: "#818cf8",
-      distance: 110, // Mantiene la constelación agrupada en racimos compactos
+      distance: 115,
       enable: true,
       opacity: 0.15,
       width: 1,
@@ -55,16 +58,17 @@ const particlesOptions = {
       outModes: {
         default: "out",
       },
-      random: false, // Trayectoria uniforme y natural
-      speed: 1.4,    // Velocidad constante y claramente perceptible
+      random: false,
+      speed: 0.7, // Velocidad base solicitada
       straight: false,
+      decay: 0,
     },
     number: {
       density: {
         enable: true,
         area: 800,
       },
-      value: 65, // Densidad balanceada sin sobrecargar la pantalla
+      value: 60,
     },
     opacity: {
       value: { min: 0.2, max: 0.7 },
@@ -73,11 +77,11 @@ const particlesOptions = {
       type: "circle",
     },
     size: {
-      value: { min: 1, max: 2.5 },
+      value: { min: 1, max: 2.2 },
     },
   },
   detectRetina: true,
-};;
+};
 
   return (
     <div 
