@@ -22,15 +22,16 @@ const ParticleBackground = () => {
       events: {
         onHover: {
           enable: true,
-          mode: "repulse",
+          mode: "grab",
         },
         resize: true,
       },
       modes: {
-        repulse: {
-          distance: 120,
-          duration: 0.4,
-          speed: 1,
+        grab: {
+          distance: 140,
+          links: {
+            opacity: 0.3,
+          },
         },
       },
     },
@@ -40,9 +41,9 @@ const ParticleBackground = () => {
       },
       links: {
         color: "#ffffff",
-        distance: 140,
+        distance: 150,
         enable: true,
-        opacity: 0.4,
+        opacity: 0.15,
         width: 1,
       },
       collisions: {
@@ -52,10 +53,10 @@ const ParticleBackground = () => {
         direction: "none",
         enable: true,
         outModes: {
-          default: "bounce",
+          default: "out",
         },
         random: false,
-        speed: 0.8,
+        speed: 0.3,
         straight: false,
       },
       number: {
@@ -63,16 +64,16 @@ const ParticleBackground = () => {
           enable: true,
           area: 800,
         },
-        value: 55,
+        value: 40,
       },
       opacity: {
-        value: { min: 0.4, max: 0.8 },
+        value: { min: 0.1, max: 0.5 },
       },
       shape: {
         type: "circle",
       },
       size: {
-        value: { min: 1.5, max: 3.5 },
+        value: { min: 1, max: 2 },
       },
     },
     detectRetina: true,
