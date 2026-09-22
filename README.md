@@ -27,4 +27,7 @@ Entrega de evaluación nº1 basada desarrollar una aplicación web. En este caso
 - `StatBadge.jsx`: Píldoras para mostrar métricas y datos relevantes mediante props.
 - `ParticleBackground.jsx`: Fondo interactivo de partículas.
 
+## Inspiraciones
+**Nos inspiramos** en la siguiente página https://hack4u.io/
+
 
