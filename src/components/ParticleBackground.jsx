@@ -22,40 +22,31 @@ const particlesOptions = {
     events: {
       onHover: {
         enable: true,
-        mode: ["grab", "repulse"],
+        // Solo 'grab': conecta hilos al cursor SIN empujar ni desarmar la constelación
+        mode: "grab", 
       },
       resize: true,
     },
     modes: {
       grab: {
-        // Distancia corta y enlaces tenues para que la tela de araña no sature la vista
-        distance: 120,
+        distance: 140, // Radio moderado de conexión al mouse
         links: {
-          opacity: 0.15,
-          color: "#c084fc",
+          opacity: 0.25, // Hilo visible pero no invasivo
+          color: "#a855f7",
         },
-      },
-      repulse: {
-        // Radio pequeño: solo afecta a partículas inmediatamente bajo el cursor
-        distance: 70,
-        // Duración breve: absorbe el empujón y vuelve al flujo sin elasticidad brusca
-        duration: 0.8,
-        // Velocidad mínima: un toque suave en lugar de una expulsión violenta
-        speed: 0.08,
       },
     },
   },
   particles: {
     color: {
-      // Tonos discretos: lavanda, violeta e índigo apagado
-      value: ["#a78bfa", "#818cf8", "#c084fc"],
+      // Púrpura, violeta y azul suave
+      value: ["#a855f7", "#818cf8", "#c084fc"],
     },
     links: {
       color: "#818cf8",
-      distance: 120,
+      distance: 110, // Mantiene la constelación agrupada en racimos compactos
       enable: true,
-      // Opacidad reducida para no competir con el Hero
-      opacity: 0.08,
+      opacity: 0.15,
       width: 1,
     },
     move: {
@@ -64,34 +55,29 @@ const particlesOptions = {
       outModes: {
         default: "out",
       },
-      random: true,
-      // Velocidad de crucero lenta y constante
-      speed: 0.35,
+      random: false, // Trayectoria uniforme y natural
+      speed: 1.4,    // Velocidad constante y claramente perceptible
       straight: false,
-      // decay en 0 (o ausente) para evitar que la partícula se frene artificialmente
-      decay: 0,
     },
     number: {
       density: {
         enable: true,
-        area: 900,
+        area: 800,
       },
-      value: 60,
+      value: 65, // Densidad balanceada sin sobrecargar la pantalla
     },
     opacity: {
-      // Opacidad baja y variable para dar sensación de fondo profundo
-      value: { min: 0.15, max: 0.45 },
+      value: { min: 0.2, max: 0.7 },
     },
     shape: {
       type: "circle",
     },
     size: {
-      // Nodos diminutos: el tamaño máximo no supera los 1.8px
-      value: { min: 0.6, max: 1.8 },
+      value: { min: 1, max: 2.5 },
     },
   },
   detectRetina: true,
-};
+};;
 
   return (
     <div 
