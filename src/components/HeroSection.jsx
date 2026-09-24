@@ -21,24 +21,25 @@ const HeroSection = ({
 }) => {
   return (
     <section className="relative z-10 min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 max-w-5xl mx-auto text-center pt-24 pb-12">
-      <div className="mb-6 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-green-900/30 border border-green-500/30 text-green-400 text-xs sm:text-sm font-semibold backdrop-blur-md">
+      <div className="mb-10 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-green-900/30 border border-green-500/30 text-green-400 text-xs sm:text-sm font-semibold backdrop-blur-md">
         <span className="flex h-2 w-2 rounded-full bg-green-500 animate-pulse" />
         Ingeniería Civil Informática • Universidad Autónoma de Temuco
       </div>
 
-      <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 mx-auto mt-4 w-full">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-center tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-gray-300 leading-tight max-w-4xl">
-          ¡Aprueba todos tus ramos!
-        </h1>
+      {/* Contenedor del Logo y Título para perfecta alineación central */}
+      <div className="flex flex-col items-center justify-center gap-5 mx-auto w-full z-10">
         <img 
           src={logoUA} 
           alt="Logo Universidad Autónoma" 
-          className="h-24 sm:h-28 md:h-32 lg:h-36 w-auto object-contain drop-shadow-2xl shrink-0" 
+          className="h-16 sm:h-20 md:h-24 w-auto object-contain drop-shadow-2xl shrink-0" 
         />
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-center tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-gray-300 leading-tight max-w-4xl w-full">
+          ¡Aprueba todos tus ramos!
+        </h1>
       </div>
 
-      <p className="mt-6 text-lg md:text-xl text-gray-400 max-w-2xl sm:max-w-3xl text-center leading-relaxed font-normal">
-        Te aportamos nuestro plan de estudio con el cual aprobamos todos nuestras asignaturas y te ayudamos a encontrar tu especialidad
+      <p className="mt-8 text-lg md:text-xl text-gray-400 max-w-2xl sm:max-w-3xl text-center leading-relaxed font-normal z-10">
+        Te aportamos nuestro plan de estudio con el cual aprobamos todas nuestras asignaturas y te ayudamos a encontrar tu especialidad.
       </p>
 
       <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-8">
