@@ -1,6 +1,7 @@
 import React from 'react';
 import StatBadge from './StatBadge.jsx';
 import { CheckCircle2, Users, ArrowRight, HelpCircle } from 'lucide-react';
+import logoUA from '../assets/UA.png';
 
 const HeroSection = ({
   stats = [
@@ -25,9 +26,16 @@ const HeroSection = ({
         Ingeniería Civil Informática • Universidad Autónoma de Temuco
       </div>
 
-      <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-center tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-gray-300 leading-[1.15] max-w-4xl">
-        Aprueba todos tus Ramos en la UA
-      </h1>
+      <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 mx-auto mt-4 w-full">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-center tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-gray-300 leading-tight max-w-4xl">
+          ¡Aprueba todos tus ramos!
+        </h1>
+        <img 
+          src={logoUA} 
+          alt="Logo Universidad Autónoma" 
+          className="h-24 sm:h-28 md:h-32 lg:h-36 w-auto object-contain drop-shadow-2xl shrink-0" 
+        />
+      </div>
 
       <p className="mt-6 text-lg md:text-xl text-gray-400 max-w-2xl sm:max-w-3xl text-center leading-relaxed font-normal">
         Te aportamos nuestro plan de estudio con el cual aprobamos todos nuestras asignaturas y te ayudamos a encontrar tu especialidad
