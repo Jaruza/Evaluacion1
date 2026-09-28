@@ -9,8 +9,8 @@ const Navbar = () => {
     { name: 'Cursos', href: '#cursos' },
     { name: 'Precios', href: '#precios' },
     { name: 'Conócenos', href: '#conocenos' },
-    { name: 'contacto', href: '#contacto' },
-    { name: 'login', href: '#login' },
+    { name: 'Contacto', href: '#contacto' },
+    { name: 'Login', href: '#login' },
   ];
 
   const handleToggleMenu = () => {

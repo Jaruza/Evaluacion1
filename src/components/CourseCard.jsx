@@ -1,29 +1,36 @@
 import React, { useState } from 'react';
 
-const CourseCard = ({ title, duration, classes, description, image }) => {
-  const [isRevealed, setIsRevealed] = useState(false);
+const CourseCard = ({ course }) => {
+  const [showDetails, setShowDetails] = useState(false);
 
   return (
     <div 
-      className="relative w-full rounded-2xl bg-white/[0.03] backdrop-blur-md border border-purple-500/20 overflow-hidden cursor-pointer transition-all duration-300 hover:border-purple-500/40"
-      onMouseEnter={() => setIsRevealed(true)}
-      onMouseLeave={() => setIsRevealed(false)}
-      onClick={() => setIsRevealed(!isRevealed)}
+      className="border border-zinc-800 bg-black/40 backdrop-blur-md rounded-xl overflow-hidden relative cursor-pointer hover:scale-[1.02] transition-transform duration-300 w-full"
+      onMouseEnter={() => setShowDetails(true)}
+      onMouseLeave={() => setShowDetails(false)}
     >
-      <div className={`transition-opacity duration-300 ${isRevealed ? 'opacity-10' : 'opacity-100'}`}>
-        <img src={image} alt={title} className="w-full h-48 object-cover" />
-        <div className="p-5">
-          <h3 className="text-white font-bold text-lg mb-2">{title}</h3>
-          <div className="flex justify-between items-center text-sm text-gray-400">
-            <span>{duration}</span>
-            <span>{classes}</span>
+      {/* Contenido Frontal */}
+      <div className={`transition-opacity duration-300 flex flex-col h-full ${showDetails ? 'opacity-10' : 'opacity-100'}`}>
+        <img src={course.image} alt={course.title} className="h-48 w-full object-cover" />
+        <div className="p-5 flex-grow flex flex-col justify-between">
+          <div>
+            <h3 className="text-white font-bold text-lg mb-2">{course.title}</h3>
+            <div className="flex justify-between items-center text-sm text-gray-400 mb-3">
+              <span>{course.duration}</span>
+              <span>{course.lessons} Clases</span>
+            </div>
+          </div>
+          <div className="text-green-400 font-semibold text-lg mt-1">
+            ${course.price.toLocaleString('es-CL')}
           </div>
         </div>
       </div>
 
-      <div className={`absolute inset-0 flex items-center justify-center p-6 text-center transition-opacity duration-300 ${isRevealed ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+      {/* Contenido Superpuesto (Detalles) */}
+      <div className={`absolute inset-0 flex flex-col items-center justify-center p-6 text-center transition-opacity duration-300 ${showDetails ? 'opacity-100 z-10' : 'opacity-0 pointer-events-none'}`}>
+        <h4 className="text-purple-400 font-bold text-sm mb-3 uppercase tracking-wider">Sobre el curso</h4>
         <p className="text-white font-medium text-sm md:text-base leading-relaxed">
-          {description}
+          {course.description}
         </p>
       </div>
     </div>
