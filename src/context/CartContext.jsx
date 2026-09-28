@@ -9,40 +9,43 @@ export const CartProvider = ({ children }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const addToCart = (item) => {
-    setCart((prevCart) => {
-      const exists = prevCart.find((i) => i.id === item.id);
-      if (exists) {
-        console.warn('El ítem ya está en el carrito');
-        return prevCart;
+    // Regla 1: Duplicados
+    if (cart.some((i) => i.id === item.id)) {
+      alert('Este ítem ya está en tu carrito');
+      return;
+    }
+
+    if (item.interval) {
+      // Regla 2 y 3: Es Suscripción y el carrito tiene cosas
+      if (cart.length > 0) {
+        alert('Añadiendo suscripción: Los cursos individuales serán removidos ya que la suscripción incluye todo');
+        setCart([item]);
+        return;
       }
-      return [...prevCart, item];
-    });
+    } else {
+      // Regla 4: Es Curso Individual, verificar si hay suscripción
+      if (cart.some((i) => i.interval)) {
+        alert('No puedes añadir cursos sueltos porque tu suscripción actual ya los incluye todos');
+        return;
+      }
+    }
+
+    setCart([...cart, item]);
   };
 
   const removeFromCart = (id) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== id));
   };
 
+  const clearCart = () => {
+    setCart([]);
+  };
+
   const toggleCart = () => {
     setIsCartOpen((prev) => !prev);
   };
 
-  // Regla de Oro: Si hay suscripción, los cursos sueltos son gratis
-  const hasSubscription = cart.some((item) => item.interval);
-
-  const cartTotal = cart.reduce((total, item) => {
-    if (hasSubscription) {
-      // Si hay suscripción, solo sumamos los ítems que sean suscripciones (los que tienen interval)
-      if (item.interval) {
-        return total + item.price;
-      }
-      // Los cursos sueltos no suman al total
-      return total;
-    } else {
-      // Si no hay suscripción, sumamos el precio de cada curso individual
-      return total + item.price;
-    }
-  }, 0);
+  const cartTotal = cart.reduce((total, item) => total + item.price, 0);
 
   return (
     <CartContext.Provider
@@ -51,9 +54,9 @@ export const CartProvider = ({ children }) => {
         isCartOpen,
         addToCart,
         removeFromCart,
+        clearCart,
         toggleCart,
-        cartTotal,
-        hasSubscription
+        cartTotal
       }}
     >
       {children}

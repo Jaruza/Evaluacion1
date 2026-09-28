@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+import { useCart } from '../context/CartContext';
 
 const CourseCard = ({ course }) => {
   const [showDetails, setShowDetails] = useState(false);
+  const { addToCart } = useCart();
 
   return (
     <div 
-      className="border border-zinc-800 bg-black/40 backdrop-blur-md rounded-xl overflow-hidden relative cursor-pointer hover:scale-[1.02] transition-transform duration-300 w-full"
+      className="border border-zinc-800 bg-black/40 backdrop-blur-md rounded-xl overflow-hidden relative cursor-pointer hover:scale-[1.02] transition-transform duration-300 w-full group"
       onMouseEnter={() => setShowDetails(true)}
       onMouseLeave={() => setShowDetails(false)}
     >
@@ -29,9 +31,15 @@ const CourseCard = ({ course }) => {
       {/* Contenido Superpuesto (Detalles) */}
       <div className={`absolute inset-0 flex flex-col items-center justify-center p-6 text-center transition-opacity duration-300 ${showDetails ? 'opacity-100 z-10' : 'opacity-0 pointer-events-none'}`}>
         <h4 className="text-purple-400 font-bold text-sm mb-3 uppercase tracking-wider">Sobre el curso</h4>
-        <p className="text-white font-medium text-sm md:text-base leading-relaxed">
+        <p className="text-white font-medium text-sm md:text-base leading-relaxed mb-6">
           {course.description}
         </p>
+        <button 
+          onClick={(e) => { e.stopPropagation(); addToCart(course); }} 
+          className="bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 px-6 rounded-full transition-colors shadow-[0_0_15px_rgba(124,58,237,0.4)]"
+        >
+          Agregar al Carrito
+        </button>
       </div>
     </div>
   );
