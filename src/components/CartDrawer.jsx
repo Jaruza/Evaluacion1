@@ -1,12 +1,22 @@
 import React from 'react';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 import { X, Trash2, ShoppingCart } from 'lucide-react';
 
 const CartDrawer = () => {
   const { cart, isCartOpen, toggleCart, removeFromCart, clearCart, cartTotal } = useCart();
+  const { user, toggleLogin } = useAuth();
 
   const handleCheckout = () => {
     if (cart.length === 0) return;
+    
+    if (!user) {
+      alert('¡Ups! Debes iniciar sesión primero para poder finalizar tu compra.');
+      toggleCart();
+      toggleLogin();
+      return;
+    }
+
     alert('¡Compra realizada con éxito! Serás redirigido a la plataforma.');
     clearCart();
     toggleCart();
