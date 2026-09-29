@@ -7,7 +7,12 @@ import logoInfor from '../assets/LOGO.png';
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, toggleLogin, logout } = useAuth();
-  const { cart, toggleCart } = useCart();
+  const { cart, toggleCart, clearCart } = useCart();
+
+  const handleLogout = () => {
+    logout();
+    clearCart();
+  };
 
   const navLinks = [
     { name: 'Cursos', href: '#cursos' },
@@ -56,7 +61,7 @@ const Navbar = () => {
               <div className="flex items-center gap-4">
                 <span className="text-sm text-gray-300">Hola, <span className="font-bold text-white">{user.name}</span></span>
                 <button 
-                  onClick={logout}
+                  onClick={handleLogout}
                   className="text-xs text-gray-400 hover:text-red-400 transition-colors"
                 >
                   Salir
@@ -122,7 +127,7 @@ const Navbar = () => {
             ) : (
               <li className="flex justify-between items-center py-2">
                 <span className="text-gray-300">Hola, {user.name}</span>
-                <button onClick={() => { logout(); setIsMenuOpen(false); }} className="text-red-400 font-semibold">Salir</button>
+                <button onClick={() => { handleLogout(); setIsMenuOpen(false); }} className="text-red-400 font-semibold">Salir</button>
               </li>
             )}
           </ul>
