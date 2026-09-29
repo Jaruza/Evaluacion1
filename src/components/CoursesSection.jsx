@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 import { Search } from 'lucide-react';
 import CourseCard from './CourseCard.jsx';
 
+// Función pura auxiliar para normalizar textos (remover tildes y mayúsculas)
+const normalizeText = (text) => {
+  if (!text) return '';
+  return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+};
+
 const SkeletonCard = () => (
   <div className="border border-zinc-800 bg-zinc-900/40 backdrop-blur-md rounded-xl overflow-hidden animate-pulse flex flex-col h-full w-full">
     <div className="h-48 bg-zinc-800 rounded-t-xl w-full"></div>
@@ -20,17 +26,25 @@ const CoursesSection = ({ cursos, loading }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('Todos');
 
-  // Ajusté las categorías para que coincidan con las reales que tenemos en db.js
   const categories = ['Todos', 'Matemáticas', 'Física', 'Preparación Certámenes'];
 
-  // Array derivado aplicando las Reglas de Negocio Estrictas
+  // Array derivado con el Filtro Matemático de Búsqueda Difusa
   const filteredCursos = cursos.filter(curso => {
-    // Regla 1: Búsqueda Activa (ignora categorías, busca en todos lados)
-    if (searchQuery.trim() !== '') {
-      return curso.title.toLowerCase().includes(searchQuery.toLowerCase());
+    const query = searchQuery.trim();
+    
+    // Regla 1: Búsqueda Multicampo y Multitérmino
+    if (query !== '') {
+      // 1. Dividimos la búsqueda del usuario en un array de palabras normalizadas
+      const searchTerms = normalizeText(query).split(/\s+/);
+      
+      // 2. Concatenamos toda la info útil del curso en una gran cadena normalizada
+      const courseData = normalizeText(`${curso.title} ${curso.category} ${curso.description}`);
+      
+      // 3. Exigimos que *cada* palabra de la búsqueda exista en alguna parte del courseData
+      return searchTerms.every(term => courseData.includes(term));
     }
     
-    // Regla 2: Vitrina Principal ('Todos' excluye Preparación Certámenes)
+    // Regla 2: Vitrina Principal ('Todos' excluye micro-cursos)
     if (activeCategory === 'Todos') {
       return curso.category !== 'Preparación Certámenes';
     }
@@ -51,7 +65,7 @@ const CoursesSection = ({ cursos, loading }) => {
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none" />
           <input 
             type="text" 
-            placeholder="Busca un ramo o certamen (Ej. Cálculo EV-1)"
+            placeholder="Busca por ramo, tema o evaluación (Ej. calculo derivadas ev-1)"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full bg-zinc-900/60 backdrop-blur-md border border-zinc-800 text-white rounded-xl py-4 pl-12 pr-4 focus:outline-none focus:border-purple-500 focus:shadow-[0_0_15px_rgba(124,58,237,0.2)] transition-all"
