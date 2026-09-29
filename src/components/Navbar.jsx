@@ -9,14 +9,26 @@ const Navbar = () => {
   const { user, toggleLogin, logout } = useAuth();
   const { cart, toggleCart, clearCart } = useCart();
 
-  const handleLogout = () => {
-    logout();
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const handleLogout = async () => {
+    setIsLoggingOut(true);
+    await logout();
     clearCart();
+    setIsLoggingOut(false);
+  };
+
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsMenuOpen(false);
   };
 
   const navLinks = [
     { name: 'Cursos', href: '#cursos' },
-    { name: 'Precios', href: '#precios' },
     { name: 'Conócenos', href: '#conocenos' },
     { name: 'Contacto', href: '#contacto' },
   ];
@@ -41,6 +53,7 @@ const Navbar = () => {
             <li key={link.name}>
               <a
                 href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="text-gray-300 hover:text-white font-medium text-sm transition-colors duration-300 relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:bg-purple-500 hover:after:w-full after:transition-all after:duration-300"
               >
                 {link.name}
@@ -62,9 +75,10 @@ const Navbar = () => {
                 <span className="text-sm text-gray-300">Hola, <span className="font-bold text-white">{user.name}</span></span>
                 <button 
                   onClick={handleLogout}
-                  className="text-xs text-gray-400 hover:text-red-400 transition-colors"
+                  disabled={isLoggingOut}
+                  className="text-xs text-gray-400 hover:text-red-400 transition-colors disabled:opacity-50 disabled:cursor-wait"
                 >
-                  Salir
+                  {isLoggingOut ? 'Saliendo...' : 'Salir'}
                 </button>
               </div>
             )}
@@ -111,7 +125,7 @@ const Navbar = () => {
               <li key={link.name}>
                 <a
                   href={link.href}
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className="block py-2 text-base text-gray-300 font-medium border-b border-white/5"
                 >
                   {link.name}
@@ -127,7 +141,13 @@ const Navbar = () => {
             ) : (
               <li className="flex justify-between items-center py-2">
                 <span className="text-gray-300">Hola, {user.name}</span>
-                <button onClick={() => { handleLogout(); setIsMenuOpen(false); }} className="text-red-400 font-semibold">Salir</button>
+                <button 
+                  onClick={() => { handleLogout(); setIsMenuOpen(false); }} 
+                  disabled={isLoggingOut}
+                  className="text-red-400 font-semibold disabled:opacity-50 disabled:cursor-wait"
+                >
+                  {isLoggingOut ? 'Saliendo...' : 'Salir'}
+                </button>
               </li>
             )}
           </ul>

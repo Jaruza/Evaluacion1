@@ -25,8 +25,12 @@ function App() {
       <AboutSection />
       <PricingSection planes={planes} loading={loading} />
       
-      {/* Añadimos un padding final para que respire al final del scroll */}
-      <div className="h-24"></div>
+      <footer id="contacto" className="w-full py-6 text-center text-sm text-gray-400 bg-black/40 backdrop-blur-md border-t border-white/10 z-10 mt-12">
+        <p>Jomni Ruiz y Harold Mora.</p>
+        <p>+56 925684775</p>
+        <p>Ingeniería Civil Informática</p>
+        <p>Universidad Autónoma de Temuco</p>
+      </footer>
     </main>
   );
 }

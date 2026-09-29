@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
 
 const PricingSection = ({ planes, loading }) => {
   const { addToCart } = useCart();
+  const [processingId, setProcessingId] = useState(null);
+
+  const handleAdd = async (plan) => {
+    setProcessingId(plan.id);
+    await addToCart(plan);
+    setProcessingId(null);
+  };
 
   return (
     <section id="precios" className="relative z-10 max-w-7xl mx-auto px-6 py-24">
@@ -47,14 +54,15 @@ const PricingSection = ({ planes, loading }) => {
               </ul>
               
               <button 
-                onClick={() => addToCart(plan)}
-                className={`mt-auto w-full py-3 rounded-full font-bold transition-colors ${
+                onClick={() => handleAdd(plan)}
+                disabled={processingId === plan.id}
+                className={`mt-auto w-full py-3 rounded-full font-bold transition-colors disabled:opacity-50 disabled:cursor-wait ${
                   plan.popular 
                     ? 'text-white bg-[#a855f7] hover:bg-purple-500 shadow-lg shadow-purple-500/30' 
                     : 'text-purple-400 border border-purple-500/50 hover:bg-purple-500/10'
                 }`}
               >
-                Suscribirse
+                {processingId === plan.id ? 'Cargando...' : 'Suscribirse'}
               </button>
             </div>
           ))

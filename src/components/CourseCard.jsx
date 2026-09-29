@@ -3,7 +3,15 @@ import { useCart } from '../context/CartContext';
 
 const CourseCard = ({ course }) => {
   const [showDetails, setShowDetails] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
   const { addToCart } = useCart();
+
+  const handleAdd = async (e) => {
+    e.stopPropagation();
+    setIsProcessing(true);
+    await addToCart(course);
+    setIsProcessing(false);
+  };
 
   return (
     <div 
@@ -35,10 +43,11 @@ const CourseCard = ({ course }) => {
           {course.description}
         </p>
         <button 
-          onClick={(e) => { e.stopPropagation(); addToCart(course); }} 
-          className="bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 px-6 rounded-full transition-colors shadow-[0_0_15px_rgba(124,58,237,0.4)]"
+          onClick={handleAdd}
+          disabled={isProcessing}
+          className="bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 px-6 rounded-full transition-colors shadow-[0_0_15px_rgba(124,58,237,0.4)] disabled:opacity-50 disabled:cursor-wait"
         >
-          Agregar al Carrito
+          {isProcessing ? 'Cargando...' : 'Agregar al Carrito'}
         </button>
       </div>
     </div>

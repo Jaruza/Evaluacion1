@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
-import { X, Trash2, ShoppingCart } from 'lucide-react';
+import { X, Trash2, ShoppingCart, Loader2 } from 'lucide-react';
 
 const CartDrawer = () => {
-  const { cart, isCartOpen, toggleCart, removeFromCart, clearCart, cartTotal } = useCart();
+  const { cart, isCartOpen, toggleCart, removeFromCart, checkout, cartTotal } = useCart();
   const { user, toggleLogin } = useAuth();
+  const [isCheckoutProcessing, setIsCheckoutProcessing] = useState(false);
+  const [removingId, setRemovingId] = useState(null);
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
     if (cart.length === 0) return;
     
     if (!user) {
@@ -17,9 +19,17 @@ const CartDrawer = () => {
       return;
     }
 
+    setIsCheckoutProcessing(true);
+    await checkout();
     alert('¡Compra realizada con éxito! Serás redirigido a la plataforma.');
-    clearCart();
+    setIsCheckoutProcessing(false);
     toggleCart();
+  };
+
+  const handleRemove = async (id) => {
+    setRemovingId(id);
+    await removeFromCart(id);
+    setRemovingId(null);
   };
 
   return (
@@ -51,8 +61,12 @@ const CartDrawer = () => {
                   <span className="text-green-400 text-sm font-semibold">${item.price.toLocaleString('es-CL')}</span>
                   {item.interval && <span className="text-xs text-purple-400 mt-1">Suscripción</span>}
                 </div>
-                <button onClick={() => removeFromCart(item.id)} className="text-zinc-500 hover:text-red-400 transition-colors">
-                  <Trash2 className="w-5 h-5" />
+                <button 
+                  onClick={() => handleRemove(item.id)} 
+                  disabled={removingId === item.id || isCheckoutProcessing}
+                  className="text-zinc-500 hover:text-red-400 transition-colors disabled:opacity-50 disabled:cursor-wait"
+                >
+                  {removingId === item.id ? <Loader2 className="w-5 h-5 animate-spin" /> : <Trash2 className="w-5 h-5" />}
                 </button>
               </div>
             ))
@@ -66,10 +80,15 @@ const CartDrawer = () => {
           </div>
           <button 
             onClick={handleCheckout} 
-            disabled={cart.length === 0}
-            className={`w-full py-4 rounded-xl font-bold text-white transition-all shadow-lg ${cart.length > 0 ? 'bg-purple-600 hover:bg-purple-500 shadow-purple-500/20' : 'bg-zinc-800 text-zinc-500 cursor-not-allowed'}`}
+            disabled={cart.length === 0 || isCheckoutProcessing}
+            className={`w-full py-4 rounded-xl font-bold text-white transition-all shadow-lg flex items-center justify-center gap-2 disabled:cursor-wait ${
+              cart.length > 0 && !isCheckoutProcessing 
+                ? 'bg-purple-600 hover:bg-purple-500 shadow-purple-500/20' 
+                : 'bg-zinc-800 text-zinc-500'
+            }`}
           >
-            Finalizar Compra
+            {isCheckoutProcessing && <Loader2 className="w-5 h-5 animate-spin" />}
+            {isCheckoutProcessing ? 'Procesando...' : 'Finalizar Compra'}
           </button>
         </div>
       </div>

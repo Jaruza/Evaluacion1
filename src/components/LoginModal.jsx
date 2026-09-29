@@ -7,11 +7,15 @@ const LoginModal = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  const [isProcessing, setIsProcessing] = useState(false);
+
   if (!isLoginOpen) return null;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    login(username, password);
+    setIsProcessing(true);
+    await login(username, password);
+    setIsProcessing(false);
   };
 
   return (
@@ -53,9 +57,12 @@ const LoginModal = () => {
           
           <button 
             type="submit" 
-            className="mt-4 w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 rounded-lg transition-colors"
+            disabled={isProcessing}
+            className={`mt-4 w-full text-white font-bold py-3 rounded-lg transition-colors ${
+              isProcessing ? 'bg-purple-600/50 cursor-wait' : 'bg-purple-600 hover:bg-purple-500'
+            }`}
           >
-            Ingresar
+            {isProcessing ? 'Cargando...' : 'Ingresar'}
           </button>
           
           <p className="text-xs text-center text-zinc-500 mt-2">Demo: pepe / 1234</p>

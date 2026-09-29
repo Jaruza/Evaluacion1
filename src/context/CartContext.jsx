@@ -1,5 +1,7 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
+import { simulatePost, simulateDelete } from '../services/apiMock';
+
 const CartContext = createContext();
 
 export const useCart = () => useContext(CartContext);
@@ -15,7 +17,7 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem('uat_cart', JSON.stringify(cart));
   }, [cart]);
 
-  const addToCart = (item) => {
+  const addToCart = async (item) => {
     // Regla 1: Duplicados
     if (cart.some((i) => i.id === item.id)) {
       alert('Este ítem ya está en tu carrito');
@@ -26,6 +28,7 @@ export const CartProvider = ({ children }) => {
       // Regla 2 y 3: Es Suscripción y el carrito tiene cosas
       if (cart.length > 0) {
         alert('Añadiendo suscripción: Los cursos individuales serán removidos ya que la suscripción incluye todo');
+        await simulatePost('/api/cart/add', { item });
         setCart([item]);
         return;
       }
@@ -37,14 +40,21 @@ export const CartProvider = ({ children }) => {
       }
     }
 
+    await simulatePost('/api/cart/add', { item });
     setCart([...cart, item]);
   };
 
-  const removeFromCart = (id) => {
+  const removeFromCart = async (id) => {
+    await simulateDelete('/api/cart/remove', { id });
     setCart((prevCart) => prevCart.filter((item) => item.id !== id));
   };
 
   const clearCart = () => {
+    setCart([]);
+  };
+
+  const checkout = async () => {
+    await simulatePost('/api/checkout', { cart });
     setCart([]);
   };
 
@@ -62,6 +72,7 @@ export const CartProvider = ({ children }) => {
         addToCart,
         removeFromCart,
         clearCart,
+        checkout,
         toggleCart,
         cartTotal
       }}
