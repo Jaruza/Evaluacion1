@@ -1,5 +1,6 @@
 import React from 'react';
-import { CheckCircle2, GraduationCap } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
+import nosotrosImg from '../assets/nosotros.jpg';
 
 const AboutSection = () => {
   return (
@@ -34,12 +35,13 @@ const AboutSection = () => {
         </div>
 
         <div className="flex justify-center items-center">
-          <div className="relative w-64 h-64 flex items-center justify-center bg-purple-900/20 rounded-full border border-purple-500/30 shadow-[0_0_50px_rgba(124,58,237,0.15)]">
-            <GraduationCap className="w-32 h-32 text-purple-400" />
-            <div 
-              className="absolute inset-0 rounded-full border-2 border-purple-500/20 animate-[spin_10s_linear_infinite]" 
-              style={{ borderStyle: 'dashed' }}
-            ></div>
+          <div className="relative w-full max-w-[320px] h-64 md:h-72 rounded-2xl overflow-hidden border border-purple-500/30 shadow-[0_0_30px_rgba(124,58,237,0.15)] group">
+            <img 
+              src={nosotrosImg} 
+              alt="Equipo InforUAT" 
+              className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-purple-900/10 pointer-events-none"></div>
           </div>
         </div>
       </div>
