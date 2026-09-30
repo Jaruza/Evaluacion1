@@ -73,7 +73,7 @@ export const cursos = [
     "duration": "1 semana",
     "lessons": 4,
     "description": "Material directo al grano y ejercicios clave para asegurar el primer certamen sin anestesia.",
-    "image": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=400"
+    "image": imgCalculo
   },
   {
     "id": "c8",
@@ -83,7 +83,7 @@ export const cursos = [
     "duration": "1 semana",
     "lessons": 4,
     "description": "Material directo al grano y ejercicios clave para asegurar el segundo certamen sin anestesia.",
-    "image": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=400"
+    "image": imgCalculo
   },
   {
     "id": "c9",
@@ -93,7 +93,7 @@ export const cursos = [
     "duration": "1 semana",
     "lessons": 4,
     "description": "Material directo al grano y ejercicios clave para asegurar el tercer certamen sin anestesia.",
-    "image": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=400"
+    "image": imgCalculo
   },
   {
     "id": "c10",
@@ -103,7 +103,7 @@ export const cursos = [
     "duration": "1 semana",
     "lessons": 4,
     "description": "Material directo al grano y ejercicios clave para asegurar el primer certamen sin anestesia.",
-    "image": "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&q=80&w=400"
+    "image": imgAlgebra
   },
   {
     "id": "c11",
@@ -113,7 +113,7 @@ export const cursos = [
     "duration": "1 semana",
     "lessons": 4,
     "description": "Material directo al grano y ejercicios clave para asegurar el segundo certamen sin anestesia.",
-    "image": "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&q=80&w=400"
+    "image": imgAlgebra
   },
   {
     "id": "c12",
@@ -123,7 +123,7 @@ export const cursos = [
     "duration": "1 semana",
     "lessons": 4,
     "description": "Material directo al grano y ejercicios clave para asegurar el tercer certamen sin anestesia.",
-    "image": "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&q=80&w=400"
+    "image": imgAlgebra
   },
   {
     "id": "c13",
@@ -133,7 +133,7 @@ export const cursos = [
     "duration": "1 semana",
     "lessons": 4,
     "description": "Material directo al grano y ejercicios clave para asegurar el primer certamen sin anestesia.",
-    "image": "https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?auto=format&fit=crop&q=80&w=400"
+    "image": imgFisica
   },
   {
     "id": "c14",
@@ -143,7 +143,7 @@ export const cursos = [
     "duration": "1 semana",
     "lessons": 4,
     "description": "Material directo al grano y ejercicios clave para asegurar el segundo certamen sin anestesia.",
-    "image": "https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?auto=format&fit=crop&q=80&w=400"
+    "image": imgFisica
   },
   {
     "id": "c15",
@@ -153,7 +153,7 @@ export const cursos = [
     "duration": "1 semana",
     "lessons": 4,
     "description": "Material directo al grano y ejercicios clave para asegurar el tercer certamen sin anestesia.",
-    "image": "https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?auto=format&fit=crop&q=80&w=400"
+    "image": imgFisica
   },
   {
     "id": "c16",
@@ -163,7 +163,7 @@ export const cursos = [
     "duration": "1 semana",
     "lessons": 4,
     "description": "Material directo al grano y ejercicios clave para asegurar el primer certamen sin anestesia.",
-    "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=400"
+    "image": imgElectro
   },
   {
     "id": "c17",
@@ -173,7 +173,7 @@ export const cursos = [
     "duration": "1 semana",
     "lessons": 4,
     "description": "Material directo al grano y ejercicios clave para asegurar el segundo certamen sin anestesia.",
-    "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=400"
+    "image": imgElectro
   },
   {
     "id": "c18",
@@ -183,7 +183,7 @@ export const cursos = [
     "duration": "1 semana",
     "lessons": 4,
     "description": "Material directo al grano y ejercicios clave para asegurar el tercer certamen sin anestesia.",
-    "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=400"
+    "image": imgElectro
   },
   {
     "id": "c19",
@@ -193,7 +193,7 @@ export const cursos = [
     "duration": "1 semana",
     "lessons": 4,
     "description": "Material directo al grano y ejercicios clave para asegurar el primer certamen sin anestesia.",
-    "image": "https://images.unsplash.com/photo-1614113489855-66422ad300a4?auto=format&fit=crop&q=80&w=400"
+    "image": imgEcDif
   },
   {
     "id": "c20",
@@ -203,7 +203,7 @@ export const cursos = [
     "duration": "1 semana",
     "lessons": 4,
     "description": "Material directo al grano y ejercicios clave para asegurar el segundo certamen sin anestesia.",
-    "image": "https://images.unsplash.com/photo-1614113489855-66422ad300a4?auto=format&fit=crop&q=80&w=400"
+    "image": imgEcDif
   },
   {
     "id": "c21",
@@ -213,7 +213,7 @@ export const cursos = [
     "duration": "1 semana",
     "lessons": 4,
     "description": "Material directo al grano y ejercicios clave para asegurar el tercer certamen sin anestesia.",
-    "image": "https://images.unsplash.com/photo-1614113489855-66422ad300a4?auto=format&fit=crop&q=80&w=400"
+    "image": imgEcDif
   },
   {
     "id": "c22",
@@ -223,7 +223,7 @@ export const cursos = [
     "duration": "1 semana",
     "lessons": 4,
     "description": "Material directo al grano y ejercicios clave para asegurar el primer certamen sin anestesia.",
-    "image": "https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&q=80&w=400"
+    "image": imgTermo
   },
   {
     "id": "c23",
@@ -233,7 +233,7 @@ export const cursos = [
     "duration": "1 semana",
     "lessons": 4,
     "description": "Material directo al grano y ejercicios clave para asegurar el segundo certamen sin anestesia.",
-    "image": "https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&q=80&w=400"
+    "image": imgTermo
   },
   {
     "id": "c24",
@@ -243,7 +243,7 @@ export const cursos = [
     "duration": "1 semana",
     "lessons": 4,
     "description": "Material directo al grano y ejercicios clave para asegurar el tercer certamen sin anestesia.",
-    "image": "https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&q=80&w=400"
+    "image": imgTermo
   }
 ];
 

@@ -6,6 +6,9 @@ const CourseCard = ({ course }) => {
   const [isProcessing, setIsProcessing] = useState(false);
   const { addToCart } = useCart();
 
+  const evMatch = course.title.match(/EV-\d/);
+  const evTag = evMatch ? evMatch[0] : null;
+
   const handleAdd = async (e) => {
     e.stopPropagation();
     setIsProcessing(true);
@@ -21,7 +24,14 @@ const CourseCard = ({ course }) => {
     >
       {/* Contenido Frontal */}
       <div className={`transition-opacity duration-300 flex flex-col h-full ${showDetails ? 'opacity-10' : 'opacity-100'}`}>
-        <img src={course.image} alt={course.title} className="h-48 w-full object-cover" />
+        <div className="relative">
+          <img src={course.image} alt={course.title} className="h-48 w-full object-cover" />
+          {evTag && (
+            <div className="absolute top-3 right-3 bg-purple-600 text-white font-black px-3 py-1 rounded-full shadow-[0_0_10px_rgba(124,58,237,0.7)] text-sm z-10 border border-purple-400">
+              {evTag}
+            </div>
+          )}
+        </div>
         <div className="p-5 flex-grow flex flex-col justify-between">
           <div>
             <h3 className="text-white font-bold text-lg mb-2">{course.title}</h3>
