@@ -1,4 +1,9 @@
 import imgCalculo from '../assets/1.Calculo.png';
+import imgAlgebra from '../assets/2.AlgebraLineal.png';
+import imgFisica from '../assets/3.FIs.mec.png';
+import imgElectro from '../assets/4.Electro.png';
+import imgEcDif from '../assets/5.EcDif.png';
+import imgTermo from '../assets/6.Termo.png';
 export const cursos = [
   {
     "id": "c1",
@@ -18,7 +23,7 @@ export const cursos = [
     "duration": "5 Semanas",
     "lessons": 15,
     "description": "Matrices, espacios vectoriales y transformaciones lineales explicados paso a paso.",
-    "image": "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&q=80&w=400"
+    "image": imgAlgebra
   },
   {
     "id": "c3",
@@ -28,7 +33,7 @@ export const cursos = [
     "duration": "6 Semanas",
     "lessons": 18,
     "description": "Mecánica newtoniana y cinemática. Prepárate para aprobar sin problemas.",
-    "image": "https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?auto=format&fit=crop&q=80&w=400"
+    "image": imgFisica
   },
   {
     "id": "c4",
@@ -38,7 +43,7 @@ export const cursos = [
     "duration": "6 Semanas",
     "lessons": 16,
     "description": "Leyes de Maxwell, campo eléctrico y magnético explicados de forma clara y directa.",
-    "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=400"
+    "image": imgElectro
   },
   {
     "id": "c5",
@@ -48,7 +53,7 @@ export const cursos = [
     "duration": "5 Semanas",
     "lessons": 15,
     "description": "Métodos de resolución y aplicaciones prácticas aplicadas a la ingeniería moderna.",
-    "image": "https://images.unsplash.com/photo-1614113489855-66422ad300a4?auto=format&fit=crop&q=80&w=400"
+    "image": imgEcDif
   },
   {
     "id": "c6",
@@ -58,7 +63,7 @@ export const cursos = [
     "duration": "5 Semanas",
     "lessons": 14,
     "description": "Leyes de la termodinámica, ciclos de energía y transferencia de calor sin complicaciones.",
-    "image": "https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&q=80&w=400"
+    "image": imgTermo
   },
   {
     "id": "c7",
