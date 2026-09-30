@@ -1,3 +1,4 @@
+import imgCalculo from '../assets/1.Calculo.png';
 export const cursos = [
   {
     "id": "c1",
@@ -7,7 +8,7 @@ export const cursos = [
     "duration": "4 Semanas",
     "lessons": 12,
     "description": "Domina los límites, derivadas y aplicaciones prácticas con ejercicios de certámenes pasados.",
-    "image": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=400"
+    "image": imgCalculo
   },
   {
     "id": "c2",
